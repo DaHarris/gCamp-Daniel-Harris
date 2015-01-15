@@ -2,5 +2,35 @@
  @import "bootstrap";
 
  body {
-   padding-top: 50px;
+   padding-top: 60px;
+ }
+
+ .navbar-inverse .navbar-brand {
+   color: #777777;
+ }
+
+ .img-footer {
+   max-width: 2em;
+   max-height: 2em;
+   margin-right: .5em;
+ }
+
+ footer {
+   padding: 1em 0;
+   padding-top: 1em;
+   padding-right: 0px;
+   padding-bottom: 1em;
+   padding-left: 0px;
+   margin-top: 1em;
+   border-top: 1px solid #ccc;
+   border-top-width: 1px;
+   border-top-style: solid;
+   border-top-color: rgb(204, 204, 204);
+ }
+
+
+ .panel-primary>.panel-heading {
+   color: white;
+   background-color: #428bca;
+   border-color: #428bca;
  }
