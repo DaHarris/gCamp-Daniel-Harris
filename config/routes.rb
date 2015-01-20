@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # Example of regular route:
   get '/about' => 'welcome#about'
   get '/terms' => 'welcome#terms'
-  get '/faq' => 'welcome#faq'
+  get '/faq' => 'commonquestions#faq'
   get '/tasks' => 'welcome#tasks'
   get '/index' => 'welcome#index'
 
