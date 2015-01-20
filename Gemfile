@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 ruby '2.2.0'
 
+# #Bundle for HAML
+# gem 'haml', '4.0.6'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use SCSS for stylesheets
