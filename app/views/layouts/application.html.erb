@@ -7,17 +7,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
+          </button> -->
+
           <a class="navbar-brand" href="/index">gCamp</a>
         </div>
+      </nav>
 
         <!--Password and Email form, save for later?
 
@@ -33,21 +37,18 @@
           </form>
         </div><!--/.navbar-collapse -->
 
-
-    </nav>
-
     <%= yield %>
 
     <footer>
       <div class="row">
         <div class= "col-md-6">
-          <a href="/about">About</a>
+          <%= link_to "About", about_path %>
           |
-          <a href="/terms">Terms</a>
+          <%= link_to "Terms", terms_path %>
           |
-          <a href="/faq">FAQ</a>
+          <%= link_to "FAQ", faq_path %>
           |
-          <a href="/tasks">Tasks</a>
+          <%= link_to "Tasks", tasks_path %>
         </div>
 
         <div class="col-md-6 text-right">

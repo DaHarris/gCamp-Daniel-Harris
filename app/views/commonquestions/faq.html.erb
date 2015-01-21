@@ -1,1 +1,30 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Frequently Asked Questions</h1>
+  </div>
+  <div class="row">
 
+
+    <div class="col-md-6">
+      <ul>
+        <li><%= link_to @question1.question, '#' %></li>
+        <li><%= link_to @question2.question, '#' %></li>
+        <li><%= link_to @question3.question, '#' %></li>
+      </ul>
+      <p>
+        <strong> <%= @question1.question %></strong></p>
+      <p>
+        <%= @question1.answer %>
+      </p>
+      <p>
+        <strong> <%= @question2.question %></strong></p>
+      <p>
+        <%= @question2.answer %>
+      </p>
+      <p>
+        <strong> <%= @question3.question %></strong></p>
+      <p>
+        <%= @question3.answer %>
+      </p>
+    </div>
+  </div>
