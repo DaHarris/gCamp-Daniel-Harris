@@ -1,10 +1,10 @@
 
 class Question
 
-  attr_accessor :question, :answer
+  attr_accessor :question, :answer, :slug
 
-  def slug
-    "#{question.parametize}"
+  def sluggin (questions)
+    return "#{questions.parameterize}"
   end
 
 end

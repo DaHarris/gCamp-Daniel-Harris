@@ -7,9 +7,9 @@
 
     <div class="col-md-6">
       <ul>
-        <li><%= link_to @question1.question, '#' %></li>
-        <li><%= link_to @question2.question, '#' %></li>
-        <li><%= link_to @question3.question, '#' %></li>
+        <li><%= link_to @question1.question, '#'+@question1.slug %></li>
+        <li><%= link_to @question2.question, '#'+@question2.slug %></li>
+        <li><%= link_to @question3.question, '#'+@question3.slug %></li>
       </ul>
       <p>
         <strong> <%= @question1.question %></strong></p>
