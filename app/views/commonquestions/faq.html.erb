@@ -7,24 +7,16 @@
 
     <div class="col-md-6">
       <ul>
-        <li><%= link_to @question1.question, '#'+@question1.slug %></li>
-        <li><%= link_to @question2.question, '#'+@question2.slug %></li>
-        <li><%= link_to @question3.question, '#'+@question3.slug %></li>
+        <li><%= link_to @question1.question, "#"+@question1.slug %></li>
+        <li><%= link_to @question2.question, "#"+@question2.slug %></li>
+        <li><%= link_to @question3.question, "#"+@question3.slug %></li>
       </ul>
+      <% @questionArray.each do |stuff| %>
       <p>
-        <strong> <%= @question1.question %></strong></p>
+        <strong> <a id="<%= stuff.slug %>"></a> <%= stuff.question %>""</strong></p>
       <p>
-        <%= @question1.answer %>
+        <%= stuff.answer %>
       </p>
-      <p>
-        <strong> <%= @question2.question %></strong></p>
-      <p>
-        <%= @question2.answer %>
-      </p>
-      <p>
-        <strong> <%= @question3.question %></strong></p>
-      <p>
-        <%= @question3.answer %>
-      </p>
+      <% end %>
     </div>
   </div>

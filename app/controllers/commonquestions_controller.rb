@@ -23,5 +23,7 @@ class CommonquestionsController < ApplicationController
     It's going to blow your mind. Organization is just a click away. Amazing!"
     @question3.slug = Question.new.sluggin(@question3.question)
 
+    @questionArray = [@question1, @question2, @question3]
+
   end
 end
