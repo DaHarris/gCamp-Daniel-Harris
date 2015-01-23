@@ -6,5 +6,5 @@ class Question
   def sluggin
     return "#{question.parameterize}"
   end
-
+ 
 end
