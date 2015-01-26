@@ -14,3 +14,12 @@
   <li><%= link_to "Tasks", tasks_path %></li>
   <li class="active"> <%= @task.description %> </li>
 </ul>
+
+
+  <div class="form-horizontal">
+    <div class="form-group"></div>
+    <div class="form-group">
+      <div class="control-label col-md-2"><%= 'Due Date:' %></div>
+        <p><%= @task.date %></p>
+    </div>
+  </div>

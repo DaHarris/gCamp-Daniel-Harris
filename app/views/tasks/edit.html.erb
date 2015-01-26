@@ -4,7 +4,7 @@
 
 <ul class="breadcrumb">
   <li><%= link_to "Tasks", tasks_path %></li>
-  <li><%= link_to "#{@task.description}", show_path %></li>
+  <li><%= link_to "#{@task.description}", @task %></li>
   <li class="active"><%= @task.description %></li>
 </ul>
 
