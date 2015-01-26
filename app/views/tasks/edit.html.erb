@@ -1,6 +1,11 @@
-<h1>Editing Task</h1>
+<div class="page-header">
+  <h1>Editing Task</h1>
+</div>
+
+<ul class="breadcrumb">
+  <li><%= link_to "Tasks", tasks_path %></li>
+  <li><%= link_to "#{@task.description}", show_path %></li>
+  <li class="active"><%= @task.description %></li>
+</ul>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @task %> |
-<%= link_to 'Back', tasks_path %>

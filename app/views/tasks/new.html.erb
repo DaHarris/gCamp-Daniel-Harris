@@ -1,5 +1,10 @@
-<h1>New Task</h1>
+<div class="page-header">
+  <h1>New Task</h1>
+</div>
 
-<%= render 'form' %>
+<ul class="breadcrumb">
+  <li><%= link_to "Tasks", tasks_path %></li>
+  <li class="active">New Task</li>
+</ul>
 
-<%= link_to 'Back', tasks_path %>
+  <%= render 'form' %>
