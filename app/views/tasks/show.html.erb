@@ -7,6 +7,9 @@
 <% end %>
 
 <div class="page-header">
+  <div class="pull-right">
+    <a class="btn btn-info" <%= link_to 'Edit', edit_task_path %></a>
+  </div>
   <h1><%= @task.description %></h1>
 </div>
 
