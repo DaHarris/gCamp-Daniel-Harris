@@ -15,11 +15,16 @@
   <li class="active"> <%= @task.description %> </li>
 </ul>
 
-
+<% if @task.date != nil %>
   <div class="form-horizontal">
     <div class="form-group"></div>
     <div class="form-group">
       <div class="control-label col-md-2"><%= 'Due Date:' %></div>
-        <p><%= @task.date %></p>
+        <%= @task.date %>
+    </div>
+    <div class="form-group">
+      <div class="control-label col-md-2"><%= 'Completed:' %></div>
+      <%= @task.completed %>
     </div>
   </div>
+<% end %>
