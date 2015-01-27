@@ -16,7 +16,7 @@
   <div class="form-group">
     <div class="control-label col-md-2"><%= f.label :description %></div>
     <div class="form-controls col-md-4">
-      <input class="form-control" id="task_description" name="task[description]" type="text">
+      <input class="form-control" id="task_description" name="task[description]" type="text" value=<%= "#{@task.description}" %>>
     </div>
   </div>
   <div class="form-group">
