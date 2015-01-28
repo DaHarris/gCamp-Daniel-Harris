@@ -19,16 +19,14 @@
 </ul>
 
 <% if @task.date != nil %>
-  <div class="form-horizontal">
-    <div class="form-group"></div>
-    <div class="form-group">
-      <div class="col-md-2"></div><strong><%= 'Due Date:' %></strong>
-      <%= @task.date %>
-    </div>
 
     <div class="form-group">
-      <div class="col-md-2"></div><strong><%= 'Completed:' %></strong>
+      </div><strong><%= 'Due Date:' %></strong>
+      <%= @task.date %>
+
+
+    <div class="form-group">
+      </div><strong><%= 'Completed:' %></strong>
       <%= @task.completed %>
-    </div>
-  </div>
+
 <% end %>
