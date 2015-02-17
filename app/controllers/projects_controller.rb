@@ -14,8 +14,25 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.save
-    redirect_to project_path(@project), :notice => 'Project was successfully created.'
+    if @project.save
+      redirect_to project_path(@project), :notice => 'Project was successfully created.'
+    else
+      @messages = @project.errors.full_messages
+      if @messages.length > 1
+        flash[:notice] = "<strong>#{@messages.length} errors prohibited this form from being saved. </strong><br ><ul>"
+        @messages.each do |x|
+          flash[:notice] << "<li>#{x}</li>"
+        end
+        flash[:notice] << "</ul>"
+      else
+        flash[:notice] = "<strong>#{@messages.length} error prohibited this form from being saved. </strong><br ><ul>"
+        @messages.each do |x|
+          flash[:notice] << "<li>#{x}</li>"
+        end
+        flash[:notice] << "</ul>"
+      end
+      redirect_to new_project_path
+    end
   end
 
   def edit
