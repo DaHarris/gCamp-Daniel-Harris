@@ -41,8 +41,25 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    @project.update(project_params)
-    redirect_to project_path(@project), :notice => 'Project was successfully updated.'
+    if @project.update(project_params)
+      redirect_to project_path(@project), :notice => 'Project was successfully updated.'
+    else
+      @messages = @project.errors.full_messages
+      if @messages.length > 1
+        flash[:notice] = "<strong>#{@messages.length} errors prohibited this form from being saved. </strong><br ><ul>"
+        @messages.each do |x|
+          flash[:notice] << "<li>#{x}</li>"
+        end
+        flash[:notice] << "</ul>"
+      else
+        flash[:notice] = "<strong>#{@messages.length} error prohibited this form from being saved. </strong><br ><ul>"
+        @messages.each do |x|
+          flash[:notice] << "<li>#{x}</li>"
+        end
+        flash[:notice] << "</ul>"
+      end
+      redirect_to edit_project_path(@project)
+    end
   end
 
   def destroy
