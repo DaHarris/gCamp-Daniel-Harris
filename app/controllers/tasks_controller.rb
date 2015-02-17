@@ -49,15 +49,25 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
-    respond_to do |format|
-      if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
-        format.json { render :show, status: :ok, location: @task }
+    if @task.update(task_params)
+      redirect_to task_path(@task), :notice => 'Task was successfully updated.'
+    else
+      @messages = @task.errors.full_messages
+      if @messages.length > 1
+        flash[:notice] = "<strong>#{@messages.length} errors prohibited this form from being saved. </strong><br ><ul>"
+        @messages.each do |x|
+          flash[:notice] << "<li>#{x}</li>"
+        end
+        flash[:notice] << "</ul>"
       else
-        format.html { render :edit }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        flash[:notice] = "<strong>#{@messages.length} error prohibited this form from being saved. </strong><br ><ul>"
+        @messages.each do |x|
+          flash[:notice] << "<li>#{x}</li>"
+        end
+        flash[:notice] << "</ul>"
       end
-    end
+      redirect_to edit_task_path(@task)
+    end        
   end
 
   # DELETE /tasks/1
