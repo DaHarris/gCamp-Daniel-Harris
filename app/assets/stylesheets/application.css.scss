@@ -1,12 +1,18 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import url(http://fonts.googleapis.com/css?family=Ubuntu:500|Raleway:400,100);
 
  // body {
  //   padding-top: 50px;
  // }
 
+ h1 { font-family: 'Ubuntu', sans-serif; }
+
+ p { font-family: 'Raleway', sans-serif;}
+
  body {
    padding-top: 60px;
+   font-family: 'Raleway', sans-serif;
  }
 
  .navbar-inverse .navbar-brand {
@@ -20,6 +26,7 @@
  }
 
  footer {
+   font-family: 'Ubuntu', sans-serif;
    padding: 1em 0;
    padding-top: 1em;
    padding-right: 0px;
