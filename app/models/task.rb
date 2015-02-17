@@ -1,4 +1,4 @@
 class Task < ActiveRecord::Base
-  validations :description, presence: true
+  validates :description, presence: true
 
 end
