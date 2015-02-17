@@ -51,8 +51,25 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to users_path, :notice => "User was successfully updated."
+    if @user.update(user_params)
+      redirect_to users_path, :notice => "User was successfully updated."
+    else
+      @messages = @user.errors.full_messages
+      if @messages.length > 1
+        flash[:notice] = "<strong>#{@messages.length} errors prohibited this form from being saved. </strong><br ><ul>"
+        @messages.each do |x|
+          flash[:notice] << "<li>#{x}</li>"
+        end
+        flash[:notice] << "</ul>"
+      else
+        flash[:notice] = "<strong>#{@messages.length} error prohibited this form from being saved. </strong><br ><ul>"
+        @messages.each do |x|
+          flash[:notice] << "<li>#{x}</li>"
+        end
+        flash[:notice] << "</ul>"
+      end
+    redirect_to edit_user_path(@user)
+    end
   end
 
   def user_params
