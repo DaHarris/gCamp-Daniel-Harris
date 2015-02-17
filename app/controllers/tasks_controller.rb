@@ -25,15 +25,24 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
+    if @task.save
+      redirect_to task_path(@task), :notice => 'Task was successfully created.'
+    else
+      @messages = @task.errors.full_messages
+      if @messages.length > 1
+        flash[:notice] = "<strong>#{@messages.length} errors prohibited this form from being saved. </strong><br ><ul>"
+        @messages.each do |x|
+          flash[:notice] << "<li>#{x}</li>"
+        end
+        flash[:notice] << "</ul>"
       else
-        format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        flash[:notice] = "<strong>#{@messages.length} error prohibited this form from being saved. </strong><br ><ul>"
+        @messages.each do |x|
+          flash[:notice] << "<li>#{x}</li>"
+        end
+        flash[:notice] << "</ul>"
       end
+      redirect_to new_task_path
     end
   end
 
