@@ -15,6 +15,15 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="/index">gCamp</a>
         </div>
+        <form class="navbar-form navbar-right">
+        <% if current_user %>
+          <strong>Logged in as: </strong> <%= current_user.user_name %>
+          <a class="btn btn-danger" <%= link_to 'Log out', logout_path %></button>
+        <% else %>
+          <a class="btn btn-success" <%= link_to 'Log in', log_in_path %></button>
+          <a class="btn btn-primary" <%= link_to 'Sign up', register_path %></button>
+        <% end %>
+      </form>
       </div>
     </div>
 
