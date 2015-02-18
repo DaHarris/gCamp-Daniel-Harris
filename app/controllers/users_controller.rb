@@ -1,5 +1,18 @@
 class UsersController < ApplicationController
 
+  # def register
+  #   @user = User.new
+  # end
+  #
+  # def create_user
+  #   @user = User.new(registered_params)
+  #   if @user.save
+  #     redirect_to root_path, :notice => 'User was successfully created.'
+  #   else
+  #     redirect_to signup_path, :notice => 'User creation was unsuccessful.'
+  #   end
+  # end
+
   def index
     @users = User.all
   end
@@ -72,8 +85,10 @@ class UsersController < ApplicationController
     end
   end
 
+  private
+
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email)
+    params.require(:user).permit(:first_name, :last_name, :email, :password)
   end
 
 end
