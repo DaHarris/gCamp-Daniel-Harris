@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate
 
   def index
     @projects = Project.all
@@ -67,6 +68,15 @@ class ProjectsController < ApplicationController
     @project.destroy
     redirect_to projects_path
   end
+
+  private
+
+  def authenticate
+    if current_user == nil
+      redirect_to signin_path, :notice => 'Must be signed in to access.'
+    end
+  end
+
   def project_params
     params.require(:project).permit(:name)
   end

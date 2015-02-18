@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :authenticate
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   # GET /tasks
@@ -67,7 +68,7 @@ class TasksController < ApplicationController
         flash[:notice] << "</ul>"
       end
       redirect_to edit_task_path(@task)
-    end        
+    end
   end
 
   # DELETE /tasks/1
@@ -81,6 +82,13 @@ class TasksController < ApplicationController
   end
 
   private
+
+    def authenticate
+      if current_user == nil
+        redirect_to signin_path, :notice => 'Must be signed in to access.'
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params[:id])
