@@ -9,7 +9,6 @@
 </head>
 <body>
 
-
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -17,8 +16,7 @@
         </div>
         <form class="navbar-form navbar-right">
         <% if current_user %>
-          <strong>Logged in as: </strong> <%= current_user.user_name %>
-          <a class="btn btn-danger" <%= link_to 'Sign in', signin_path %></button>
+          <strong>Logged in as: </strong> <%= current_user.first_name %>
           <a class="btn btn-danger" <%= link_to 'Sign out', signout_path %></button>
         <% else %>
           <a class="btn btn-success" <%= link_to 'Sign in', signin_path %></button>

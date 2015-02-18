@@ -4,12 +4,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find(params[:id])
-    if user
+    user = User.find_by_email(params[:email])
+    if user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to root_path, :notice => 'Logged in.'
     else
-      redirect_to login_path, :notice => 'Unsuccessful login.'
+      redirect_to signin_path, :notice => 'Unsuccessful login.'
     end
   end
 
