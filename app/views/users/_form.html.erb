@@ -22,6 +22,18 @@
       </div>
     </div>
     <div class="form-group">
+      <%= f.label :password, class: "control-label col-md-2" %>
+      <div class="form-controls col-md-4">
+        <%= f.password_field :password, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation, class: "control-label col-md-2" %>
+      <div class="form-controls col-md-4">
+        <%= f.password_field :password_confirmation, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
       <div class = "col-md-offset-2 col-md-4">
         <% if path = @user.first_name == nil %>
           <%= f.submit "Create User", class: "btn btn-primary"  %>
