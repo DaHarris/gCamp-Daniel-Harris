@@ -1,32 +1,22 @@
 <%= render 'errors/form' %>
 
-<div class="page-header">
-  <h1>Signin</h1>
+<div class="row">
+ <div class="col-md-4 col-md-offset-4">
+   <div class="well">
+     <h2>Log In</h2>
+     <%= form_tag signin_path do %>
+     <div class="form-group">
+       <%= label_tag :email %>
+       <%= email_field_tag :email, nil, class: "form-control" %>
+     </div>
+     <div class="form-group">
+       <%= label_tag :password %>
+       <%= password_field_tag :password, nil, class: "form-control" %>
+     </div>
+     <div class="form-group">
+       <%= submit_tag 'Login!', class: "btn btn-primary" %>
+     </div>
+     <% end %>
+   </div>
+ </div>
 </div>
-
-<%= form_tag signin_path, class: "form-horizontal" do %>
-
-  <form class="form-horizontal">
-      <div class="form-group">
-        <%= label_tag :email, nil,  class:  "control-label col-md-2" %>
-        <div class="col-md-4">
-          <%= email_field_tag :email, nil, class: "form-control" %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= label_tag :password, nil, class: "control-label col-md-2" %>
-        <div class="col-md-4">
-          <%= password_field_tag :password, nil, class: "form-control" %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class = "col-md-offset-2 col-md-4">
-          <%= submit_tag 'Signin', class: "btn btn-primary"  %>
-          <%= link_to "Cancel", root_path, class: "btn btn-default" %>
-        </div>
-      </div>
-  </form>
-
-<% end %>
