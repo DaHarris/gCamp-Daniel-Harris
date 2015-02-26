@@ -1,0 +1,19 @@
+test:
+  adapter: postgresql
+  database: travis_ci_test
+  username: postgres
+
+
+
+# #postgresqls from sqlite3
+#
+# default: &default
+#  adapter: postgresql
+#
+# development:
+#  <<: *default
+#  database: gcamp_development
+#
+# test:
+#  <<: *default
+#  database: gcamp_test
