@@ -17,10 +17,12 @@
         <form class="navbar-form navbar-right">
         <% if current_user %>
           <strong>Logged in as: </strong> <%= current_user.first_name %>
-          <a class="btn btn-danger" <%= link_to 'Sign out', signout_path %></button>
+          <%= link_to 'Sign out', signout_path %>
+          |
         <% else %>
-          <a class="btn btn-success" <%= link_to 'Sign in', signin_path %></button>
-          <a class="btn btn-primary" <%= link_to 'Sign up', signup_path %></button>
+          <%= link_to 'Sign in', signin_path %>
+          |
+          <%= link_to 'Sign up', signup_path %>
         <% end %>
       </form>
       </div>

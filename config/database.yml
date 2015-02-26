@@ -1,0 +1,12 @@
+#postgresqls from sqlite3
+
+default: &default
+ adapter: postgresql
+
+development:
+ <<: *default
+ database: gcamp_development
+
+test:
+ <<: *default
+ database: gcamp_test

@@ -1,48 +1,41 @@
-<%= render 'errors/form' %>
 
-<%= form_for @user, html:{class: "form-horizontal"} do |f| %>
+<div class="row">
+ <div class="col-md-4 col-md-offset-4">
+   <div class="well">
+      <h2>Signup</h2>
 
-    <div class="form-group">
-      <%= f.label :first_name, class: "control-label col-md-2" %>
-      <div class="form-controls col-md-4">
+      <%= form_for @user, html:{class: "form-horizontal"} do |f| %>
+
+      <div class="form-group">
+        <%= f.label :first_name  %>
         <%= f.text_field :first_name, class:"form-control" %>
       </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :last_name, class: "control-label col-md-2" %>
-      <div class="form-controls col-md-4">
+      <div class="form-group">
+        <%= f.label :last_name %>
         <%= f.text_field :last_name, class: "form-control" %>
       </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :email, class:  "control-label col-md-2" %>
-      <div class="form-controls col-md-4">
+      <div class="form-group">
+        <%= f.label :email %>
         <%= f.email_field :email, class: "form-control" %>
       </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :password, class: "control-label col-md-2" %>
-      <div class="form-controls col-md-4">
+      <div class="form-group">
+        <%= f.label :password %>
         <%= f.password_field :password, class: "form-control" %>
       </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :password_confirmation, class: "control-label col-md-2" %>
-      <div class="form-controls col-md-4">
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation, class: "form-control" %>
       </div>
-    </div>
-    <div class="form-group">
-      <div class = "col-md-offset-2 col-md-4">
-        <% if path = @user.first_name == nil %>
-          <%= f.submit "Create User", class: "btn btn-primary"  %>
-        <% else %>
-          <%= f.submit "Update User", class: "btn btn-primary"  %>
-          <a class= 'btn btn-danger' <%= link_to 'Delete', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% end %>
-        <%= link_to "Cancel", "/users", class: "btn btn-default" %>
+      <div class="form-group">
+          <% if path = @user.first_name == nil %>
+            <%= f.submit "Create User", class: "btn btn-primary"  %>
+          <% else %>
+            <%= f.submit "Update User", class: "btn btn-primary"  %>
+            <a class= 'btn btn-danger' <%= link_to 'Delete', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+          <%= link_to "Cancel", "/users", class: "btn btn-default" %>
       </div>
+      <% end %>
     </div>
-
-
-<% end %>
+  </div>
+</div>
