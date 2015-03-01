@@ -29,7 +29,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.project_id = @project.id
     if @task.save
-      redirect_to task_path(@task), :notice => 'Task was successfully created.'
+      redirect_to project_task_path(@project, @task), :notice => 'Task was successfully created.'
     else
       @messages = @task.errors.full_messages
       if @messages.length > 1
@@ -45,7 +45,7 @@ class TasksController < ApplicationController
         end
         flash[:notice] << "</ul>"
       end
-      redirect_to new_task_path
+      redirect_to new_project_task_path(@project)
     end
   end
 
@@ -53,7 +53,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1.json
   def update
     if @task.update(task_params)
-      redirect_to task_path(@task), :notice => 'Task was successfully updated.'
+      redirect_to project_task_path(@project, @task), :notice => 'Task was successfully updated.'
     else
       @messages = @task.errors.full_messages
       if @messages.length > 1
@@ -69,7 +69,7 @@ class TasksController < ApplicationController
         end
         flash[:notice] << "</ul>"
       end
-      redirect_to edit_task_path(@task)
+      redirect_to edit_project_task_path(@project, @task)
     end
   end
 
@@ -78,7 +78,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
+      format.html { redirect_to project_tasks_path(@project), notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -8,13 +8,13 @@
 
 <div class="page-header">
   <div class="pull-right">
-    <a class="btn btn-info" <%= link_to 'Edit', edit_task_path %></a>
+    <a class="btn btn-info" <%= link_to 'Edit', edit_project_task_path(@project, @task) %></a>
   </div>
   <h1><%= @task.description %></h1>
 </div>
 
 <ul class="breadcrumb">
-  <li><%= link_to "Tasks", tasks_path %></li>
+  <li><%= link_to "Tasks", project_tasks_path(@project) %></li>
   <li class="active"> <%= @task.description %> </li>
 </ul>
 
