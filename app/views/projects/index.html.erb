@@ -17,6 +17,11 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Tasks:</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -24,6 +29,11 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= link_to "#{project.name}", project %></td>
+        <td><%= link_to "#{project.tasks.size}", project_tasks_path(project) %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
     <% end %>
   </tbody>
