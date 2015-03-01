@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User can CRUD Events' do
+describe 'User can Signup and Crud User registration' do
 
   before :each do
     # visit root
