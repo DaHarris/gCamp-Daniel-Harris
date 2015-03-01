@@ -33,7 +33,7 @@ describe 'User can CRUD Events' do
     fill_in "Name", with: "yeah"
 
     click_on "Create Project"
-    click_on "Projects"
+    first(:link, "Projects").click
   end
 
   it 'User can create projects' do
