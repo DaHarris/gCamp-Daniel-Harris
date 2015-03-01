@@ -1,11 +1,12 @@
 class TasksController < ApplicationController
   before_action :authenticate
+  before_action :set_project
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+    @tasks = @project.tasks
   end
 
   # GET /tasks/1
@@ -26,6 +27,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
+    @task.project_id = @project.id
     if @task.save
       redirect_to task_path(@task), :notice => 'Task was successfully created.'
     else
@@ -83,19 +85,23 @@ class TasksController < ApplicationController
 
   private
 
-    def authenticate
-      if current_user == nil
-        redirect_to signin_path, :notice => 'Must be signed in to access.'
-      end
-    end
+  def set_project
+    @project = Project.find(params[:project_id])
+  end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
+  def authenticate
+    if current_user == nil
+      redirect_to signin_path, :notice => 'Must be signed in to access.'
     end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def task_params
-      params.require(:task).permit(:description, :date, :completed)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = Task.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def task_params
+    params.require(:task).permit(:description, :date, :completed)
+  end
 end
