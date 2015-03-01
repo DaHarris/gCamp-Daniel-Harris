@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  resources :tasks
+
   resources :users
-  resources :projects
+
+  #tasks now nested in projects
+  resources :projects do
+    resources :tasks
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -13,9 +17,7 @@ Rails.application.routes.draw do
   get 'about' => 'welcome#about'
   get 'terms' => 'welcome#terms'
   get 'faq' => 'commonquestions#faq'
-  get 'tasks' => 'welcome#tasks'
   get 'index' => 'welcome#index'
-  get 'show' => 'tasks#show'
   get 'signin' => 'sessions#new'
   post 'signin' => 'sessions#create'
   get 'signout' => 'sessions#destroy'
