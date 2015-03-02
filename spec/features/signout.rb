@@ -31,4 +31,9 @@ describe 'User can Signin' do
     click_on "Sign out"
     expect(page).to have_content("Logged out.")
   end
+
+  it 'redirects correctly' do
+    click_on "Sign out"
+    current_path.should == '/'
+  end
 end

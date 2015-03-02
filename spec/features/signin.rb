@@ -30,4 +30,15 @@ describe 'User can Signin' do
 
     expect(page).to have_content('Logged in as: Dan')
   end
+
+  it 'redirects correctly' do
+    click_on "Sign in"
+
+    fill_in "Email", with: "bobth3bum@gmail.com"
+    fill_in "Password", with: "my_pass"
+
+    click_on "Sign In"
+
+    current_path.should == "/"
+  end
 end
