@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   #tasks now nested in projects
   resources :projects do
+    resources :memberships
     resources :tasks
   end
 

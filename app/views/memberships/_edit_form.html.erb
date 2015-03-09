@@ -1,0 +1,17 @@
+<%= form_for [@project, mem] do |f| %>
+
+  <%= link_to User.find(mem.user_id).first_name, user_path(User.find(mem.user_id)) %>
+
+  <% if mem.owner == true %>
+    <%= f.collection_select :owner, @roles, :to_s, :to_s, {selected: "Owner"}, {class: "form-control"} %>
+  <% else %>
+    <%= f.collection_select :owner, @roles, :to_s, :to_s, {selected: "Member"}, {class: "form-control"} %>
+  <% end %>
+
+  <%= f.submit 'Update', class: "btn btn-primary" %>
+
+  <%= link_to project_membership_path(@project, mem), confirm: "Are you sure?", method: :delete do %>
+    <span class="glyphicon glyphicon-remove"></span>
+  <% end %>
+  
+<% end %>

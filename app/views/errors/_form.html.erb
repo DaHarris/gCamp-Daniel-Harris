@@ -1,9 +1,9 @@
-<% if notice %>
+<% if flash[:danger] %>
   <form class="form-horizontal">
       <div class="form-group">
-        <div class="col-md-6 col-md-offset-2">
+        <div class="col-md-8">
           <div class="alert alert-danger" role="alert">
-            <%= notice.html_safe %>
+            <%= flash[:danger].html_safe %>
           </div>
         </div>
       </div>

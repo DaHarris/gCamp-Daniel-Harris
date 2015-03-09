@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h1><%= "#{@project.name}: Manage Members" %></h1>
+</div>
+
+<ul class="breadcrumb">
+  <li><%= link_to "Projects", projects_path %></li>
+  <li><%= link_to "#{@project.name}", project_path(@project) %></li>
+  <li class="active"><%= 'Memberships' %></li>
+</ul>
+
+<% if flash[:danger] %>
+  <%= render 'errors/form' %>
+<% end %>
+
+
+<div class="well form-inline">
+  <div class="row">
+    <div class="col-md-12">
+      <%= render 'new_form' %>
+    </div>
+  </div>
+</div>
+
+<% @project.memberships.each do |mem| %>
+  <div class="form-inline">
+    <%= render partial: "edit_form", locals: {mem: mem} %>
+  </div>
+<% end %>

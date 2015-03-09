@@ -1,0 +1,8 @@
+<%= form_for [@project, Membership.new] do |f| %>
+
+  <%= f.collection_select :user_id, User.all, :id, :first_name, {:prompt => 'Please select a user...'}, {class: "form-control"} %>
+
+  <%= f.collection_select :owner, @roles, :to_s, :to_s, {:prompt => false}, {class: "form-control"} %>
+
+  <%= f.submit 'Add New Member', class: "btn btn-primary" %>
+<% end %>
