@@ -1,11 +1,3 @@
-<% if notice != nil %>
-  <p id="notice">
-    <div class="alert alert-success text-centered" role="alert">
-      <p class="text-center"><%= notice %></p>
-    </div>
-  </p>
-<% end %>
-
 <div class="page-header">
   <div class="pull-right">
     <a class="btn btn-info" <%= link_to 'New Project', new_project_path %></a>
@@ -18,7 +10,7 @@
     <tr>
       <th>Name</th>
       <th>Tasks:</th>
-      <th></th>
+      <th>Memberships:</th>
       <th></th>
       <th></th>
       <th></th>
@@ -30,7 +22,7 @@
       <tr>
         <td><%= link_to "#{project.name}", project %></td>
         <td><%= link_to "#{project.tasks.size}", project_tasks_path(project) %></td>
-        <td></td>
+        <td><%= link_to "#{project.memberships.size}", project_memberships_path(project) %></td>
         <td></td>
         <td></td>
         <td></td>

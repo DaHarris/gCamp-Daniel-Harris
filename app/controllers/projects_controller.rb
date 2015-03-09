@@ -20,17 +20,17 @@ class ProjectsController < ApplicationController
     else
       @messages = @project.errors.full_messages
       if @messages.length > 1
-        flash[:notice] = "<strong>#{@messages.length} errors prohibited this form from being saved. </strong><br ><ul>"
+        flash[:danger] = "<h2>#{@messages.length} errors prohibited this form from being saved. </h2><br ><ul>"
         @messages.each do |x|
-          flash[:notice] << "<li>#{x}</li>"
+          flash[:danger] << "<li>#{x}</li>"
         end
-        flash[:notice] << "</ul>"
+        flash[:danger] << "</ul>"
       else
-        flash[:notice] = "<strong>#{@messages.length} error prohibited this form from being saved. </strong><br ><ul>"
+        flash[:danger] = "<h2>#{@messages.length} error prohibited this form from being saved. </h2><br ><ul>"
         @messages.each do |x|
-          flash[:notice] << "<li>#{x}</li>"
+          flash[:danger] << "<li>#{x}</li>"
         end
-        flash[:notice] << "</ul>"
+        flash[:danger] << "</ul>"
       end
       redirect_to new_project_path
     end
@@ -47,17 +47,17 @@ class ProjectsController < ApplicationController
     else
       @messages = @project.errors.full_messages
       if @messages.length > 1
-        flash[:notice] = "<strong>#{@messages.length} errors prohibited this form from being saved. </strong><br ><ul>"
+        flash[:danger] = "<h2>#{@messages.length} errors prohibited this form from being saved. </h2><br ><ul>"
         @messages.each do |x|
-          flash[:notice] << "<li>#{x}</li>"
+          flash[:danger] << "<li>#{x}</li>"
         end
-        flash[:notice] << "</ul>"
+        flash[:danger] << "</ul>"
       else
-        flash[:notice] = "<strong>#{@messages.length} error prohibited this form from being saved. </strong><br ><ul>"
+        flash[:danger] = "<h2>#{@messages.length} error prohibited this form from being saved. </h2><br ><ul>"
         @messages.each do |x|
-          flash[:notice] << "<li>#{x}</li>"
+          flash[:danger] << "<li>#{x}</li>"
         end
-        flash[:notice] << "</ul>"
+        flash[:danger] << "</ul>"
       end
       redirect_to edit_project_path(@project)
     end
