@@ -16,13 +16,15 @@
         </div>
         <form class="navbar-form navbar-right">
         <% if current_user %>
-          <strong>Logged in as: </strong> <%= current_user.first_name %>
-          <%= link_to 'Sign out', signout_path %>
+          <div class="navbar-brand">
+            <%= current_user.first_name %>
+          </div>
+          <%= link_to 'Sign out', signout_path, class: "navbar-brand" %>
           |
         <% else %>
-          <%= link_to 'Sign in', signin_path %>
+          <%= link_to 'Sign in', signin_path, class: "navbar-brand" %>
           |
-          <%= link_to 'Sign up', signup_path %>
+          <%= link_to 'Sign up', signup_path, class: "navbar-brand" %>
         <% end %>
       </form>
       </div>
