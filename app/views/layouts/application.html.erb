@@ -30,40 +30,47 @@
       </div>
     </div>
 
+
     <div class="container">
 
-    <%= yield %>
-
-    <footer>
-      <div class="row">
-        <div class= "col-md-6">
-          <%= link_to "About", about_path %>
-          |
-          <%= link_to "Terms", terms_path %>
-          |
-          <%= link_to "FAQ", faq_path %>
-          |
-          <%= link_to "Users", users_path %>
-          |
-          <%= link_to "Projects", projects_path %>
+      <% if notice %>
+        <div class="alert alert-success" %>
+          <%= notice %>
         </div>
+      <% end %>
 
-        <div class="col-md-6 text-right">
-          <a href="https://www.linkedin.com/in/danielwharrisdenver">
-            <%= image_tag 'linkedin.png', class: "img-footer", alt: "LinkedIn" %>
-          </a>
-          <a href="https://github.com/DaHarris">
-            <%= image_tag 'github.png', class: "img-footer", alt: "Github" %>
-          </a>
-          <a href="https://twitter.com/bobth3bum">
-            <%= image_tag 'twitter.png', class: "img-footer", alt: "Twitter" %>
-          </a>
-          <a href="https://students.gschool.it/students/201">
-            <%= image_tag 'galvanize.png', class: "img-footer", alt: "Galvanize" %>
-          </a>
-         </div>
-        </div>
-    </footer>
+      <%= yield %>
+
+      <footer>
+        <div class="row">
+          <div class= "col-md-6">
+            <%= link_to "About", about_path %>
+            |
+            <%= link_to "Terms", terms_path %>
+            |
+            <%= link_to "FAQ", faq_path %>
+            |
+            <%= link_to "Users", users_path %>
+            |
+            <%= link_to "Projects", projects_path %>
+          </div>
+
+          <div class="col-md-6 text-right">
+            <a href="https://www.linkedin.com/in/danielwharrisdenver">
+              <%= image_tag 'linkedin.png', class: "img-footer", alt: "LinkedIn" %>
+            </a>
+            <a href="https://github.com/DaHarris">
+              <%= image_tag 'github.png', class: "img-footer", alt: "Github" %>
+            </a>
+            <a href="https://twitter.com/bobth3bum">
+              <%= image_tag 'twitter.png', class: "img-footer", alt: "Twitter" %>
+            </a>
+            <a href="https://students.gschool.it/students/201">
+              <%= image_tag 'galvanize.png', class: "img-footer", alt: "Galvanize" %>
+            </a>
+           </div>
+          </div>
+      </footer>
   </div>
 
 
