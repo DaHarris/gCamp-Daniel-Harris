@@ -1,4 +1,5 @@
 class MembershipsController < ApplicationController
+  before_action :authenticate
 
   def index
     @project = Project.find(params[:project_id])
@@ -79,7 +80,12 @@ class MembershipsController < ApplicationController
 
   private
 
-    def membership_params
-      params.require(:membership).permit(:owner)
-    end
+  def authenticate
+    @project = Project.find(params[:project_id])
+    redirect_to projects_path, notice: "You do not have access to that project" unless @project.users.include?(current_user)
+  end
+
+  def membership_params
+    params.require(:membership).permit(:owner)
+  end
 end
