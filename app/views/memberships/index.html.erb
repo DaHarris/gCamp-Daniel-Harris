@@ -35,6 +35,7 @@
       <tr>
         <th>Name:</th>
         <th>Type:</th>
+        <th></th>
       </tr>
     </thead>
 
@@ -46,6 +47,11 @@
             <td>owner</td>
           <% else %>
             <td>member</td>
+          <% end %>
+          <% if current_user == mem.user %>
+            <td><%= link_to project_membership_path(@project, mem), confirm: "Are you sure?", method: :delete do %>
+              <span class="glyphicon glyphicon-remove"></span></td>
+            <% end %>
           <% end %>
           </tr>
         <% end %>
