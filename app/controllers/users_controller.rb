@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate
 
   # def register
   #   @user = User.new
@@ -86,6 +87,12 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def authenticate
+    if current_user == nil
+      redirect_to signin_path, :notice => 'Must be signed in to access.'
+    end
+  end
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
