@@ -93,6 +93,8 @@ class TasksController < ApplicationController
     if current_user == nil
       redirect_to signin_path, :notice => 'Must be signed in to access.'
     end
+    @project = Project.find(params[:project_id])
+    redirect_to projects_path, notice: "You do not have access to that project" unless @project.users.include?(current_user)
   end
 
   # Use callbacks to share common setup or constraints between actions.
