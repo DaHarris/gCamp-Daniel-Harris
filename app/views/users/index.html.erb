@@ -18,10 +18,12 @@
       <tr>
         <td><%= link_to "#{user.first_name}", user %></td>
         <td><a href="mailto:#"><%= user.email %></td>
-        <td class="text-right">
-        <a class="btn btn-info" <%= link_to 'Edit', edit_user_path(user) %>
-        <a class="btn btn-danger" <%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
+        <% if user == current_user %>
+          <td class="text-right">
+            <a class="btn btn-info" <%= link_to 'Edit', edit_user_path(user) %>
+            <a class="btn btn-danger" <%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate, except: [:new, :create]
+  before_action :owner, only: [:edit, :update, :destroy]
 
   # def register
   #   @user = User.new
@@ -88,6 +89,13 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def owner
+    @user = User.find(params[:id])
+    if current_user != @user
+      render :file => "#{Rails.root}/public/404.html",  :status => 404, :layout => false
+    end
+  end
 
   def authenticate
     if current_user == nil
