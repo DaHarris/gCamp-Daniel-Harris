@@ -1,5 +1,6 @@
 class MembershipsController < ApplicationController
   before_action :authenticate
+  before_action :owner, only: [:edit, :update, :delete]
 
   def index
     @project = Project.find(params[:project_id])
@@ -83,6 +84,13 @@ class MembershipsController < ApplicationController
   def authenticate
     @project = Project.find(params[:project_id])
     redirect_to projects_path, notice: "You do not have access to that project" unless @project.users.include?(current_user)
+  end
+
+  def owner
+    @project = Project.find(params[:project_id])
+    if @project.memberships.where(owner: true, user_id: current_user.id) == []
+      redirect_to @project, notice: "You do not have access"
+    end
   end
 
   def membership_params

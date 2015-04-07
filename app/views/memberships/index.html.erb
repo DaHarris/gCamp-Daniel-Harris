@@ -12,17 +12,44 @@
   <%= render 'errors/form' %>
 <% end %>
 
-
-<div class="well form-inline">
-  <div class="row">
-    <div class="col-md-12">
-      <%= render 'new_form' %>
+<% if @project.memberships.where(owner: true, user_id: current_user.id) != [] %>
+  <div class="well form-inline">
+    <div class="row">
+      <div class="col-md-12">
+        <%= render 'new_form' %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
 
-<% @project.memberships.each do |mem| %>
-  <div class="form-inline">
-    <%= render partial: "edit_form", locals: {mem: mem} %>
-  </div>
+<% if @project.memberships.where(owner: true, user_id: current_user.id) != [] %>
+  <% @project.memberships.each do |mem| %>
+    <div class="form-inline">
+      <%= render partial: "edit_form", locals: {mem: mem} %>
+    </div>
+  <% end %>
+<% else %>
+
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Name:</th>
+        <th>Type:</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <% @project.memberships.each do |mem| %>
+          <td><%= mem.user.first_name %></td>
+          <% if mem.owner == true %>
+            <td>owner</td>
+          <% else %>
+            <td>member</td>
+          <% end %>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+
 <% end %>
