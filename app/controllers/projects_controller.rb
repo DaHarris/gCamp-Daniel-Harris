@@ -2,11 +2,12 @@ class ProjectsController < ApplicationController
   before_action :authenticate
 
   def index
-    @projects = Project.all
+    @projects = current_user.projects
   end
 
   def show
-    @project  = Project.find(params[:id])
+    @project = Project.find(params[:id])
+    redirect_to projects_path unless @project.users.include?(current_user)
   end
 
   def new
@@ -39,10 +40,12 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
+    redirect_to projects_path unless @project.users.include?(current_user)
   end
 
   def update
     @project = Project.find(params[:id])
+    redirect_to projects_path unless @project.users.include?(current_user)
     if @project.update(project_params)
       redirect_to project_path(@project), :notice => 'Project was successfully updated.'
     else
@@ -66,6 +69,7 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project = Project.find(params[:id])
+    redirect_to projects_path unless @project.users.include?(current_user)
     @project.destroy
     redirect_to projects_path
   end
