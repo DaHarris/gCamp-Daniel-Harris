@@ -33,7 +33,13 @@
 <% @task.comments.each do |com| %>
   <div class="row">
     <div class="col-md-3">
-      <%= link_to com.user.full_name, user_path(com.user) %>
+      <% if com.user_id == nil %>
+        <div class="text-muted">
+          deleted user
+        </div>
+      <% else %>
+        <%= link_to com.user.full_name, user_path(com.user) %>
+      <% end %>
       <br>
       <div class="text-muted">
         <%= time_ago_in_words(com.created_at) + " ago" %>
