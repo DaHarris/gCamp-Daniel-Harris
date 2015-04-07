@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     if @user.valid?
       if @user.save
         session[:user_id] = @user.id
-        redirect_to users_path, :notice => "User was successfully created."
+        redirect_to new_project_path, :notice => "User was successfully created."
       else
         render :new
       end
