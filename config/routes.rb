@@ -5,8 +5,11 @@ Rails.application.routes.draw do
   #tasks now nested in projects
   resources :projects do
     resources :memberships
-    resources :tasks
+    resources :tasks do
+      resources :comments
+    end
   end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

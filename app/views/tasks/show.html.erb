@@ -27,10 +27,33 @@
 <% end %>
 
 <h1>Comments</h1>
+
+<br>
+
 <% @task.comments.each do |com| %>
   <div class="row">
-    <div class="col-md-12">
-      <%= com.user.full_name %>
+    <div class="col-md-3">
+      <%= link_to com.user.full_name, user_path(com.user) %>
+      <br>
+      <div class="text-muted">
+        <%= time_ago_in_words(com.created_at) + " ago" %>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <%= com.text %>
+    </div>
+  </div>
+  <br>
+<% end %>
+
+<br>
+
+<%= form_for([@project, @task, Comment.new]) do |f| %>
+  <div class="row">
+    <div class="col-md-9 col-md-offset-3">
+      <%= f.text_area :text, class: "form-control" %>
+      <br>
+      <%= f.submit class: "btn btn-primary", rows: "3"%>
     </div>
   </div>
 <% end %>
