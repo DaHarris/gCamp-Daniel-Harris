@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate
+  before_action :owner, only: [:edit, :update, :destroy]
 
   def index
     @projects = current_user.projects
@@ -79,6 +80,13 @@ class ProjectsController < ApplicationController
   def authenticate
     if current_user == nil
       redirect_to signin_path, :notice => 'Must be signed in to access.'
+    end
+  end
+
+  def owner
+    @project = Project.find(params[:id])
+    if @project.memberships.where(owner: true, user_id: current_user.id) == []
+      redirect_to @project, notice: "You do not have access"
     end
   end
 
