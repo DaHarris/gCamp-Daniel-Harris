@@ -1,21 +1,34 @@
+<div class="page-header">
+  <h1>About</h1>
+</div>
 
-    <div class="page-header">
-      <h1>About</h1>
-    </div>
+<div class="row">
+  <div class="col-md-4">
+    <%= image_tag 'about.jpg', class: "img-responsive" %>
+  </div>
+  <div class="col-md-8">
+    <p>
+      We are dedicated to the makers, the creators, the risk-takers.
+    </p>
+    <p>
+      We wake up in the middle of the night and furiously write down ideas about how to make your online life better.
+    </p>
+    <p>
+      Human collaboration and communication is what drives us, and it infuses every feature of gCamp.
+    </p>
+  </div>
+</div>
 
-    <div class="row">
-      <div class="col-md-4">
-        <%= image_tag 'about.jpg', class: "img-responsive" %>
-      </div>
-      <div class="col-md-8">
-        <p>
-          We are dedicated to the makers, the creators, the risk-takers.
-        </p>
-        <p>
-          We wake up in the middle of the night and furiously write down ideas about how to make your online life better.
-        </p>
-        <p>
-          Human collaboration and communication is what drives us, and it infuses every feature of gCamp.
-        </p>
-      </div>
-    </div>
+<br>
+
+<div class="row">
+  <div class="col-md-12">
+    <p>gCamp is extremely active. Check out our killer stats below!</p>
+
+    <%= pluralize(@projects.size, 'Project') %>,
+    <%= pluralize(@tasks.size, 'Task') %>,
+    <%= pluralize(@project_members.size, 'Project Member') %>,
+    <%= pluralize(@users.size, 'User') %>,
+    <%= pluralize(@comments.size, 'Comment') %>
+  </div>
+</div>
