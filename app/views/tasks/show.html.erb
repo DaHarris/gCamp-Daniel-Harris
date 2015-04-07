@@ -25,3 +25,12 @@
       <%= @task.completed %>
 
 <% end %>
+
+<h1>Comments</h1>
+<% @task.comments.each do |com| %>
+  <div class="row">
+    <div class="col-md-12">
+      <%= com.user.full_name %>
+    </div>
+  </div>
+<% end %>
