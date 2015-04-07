@@ -16,6 +16,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     if @project.save
+      Membership.create(owner: true, user_id: current_user.id, project_id: @project.id)
       redirect_to project_path(@project), :notice => 'Project was successfully created.'
     else
       @messages = @project.errors.full_messages
