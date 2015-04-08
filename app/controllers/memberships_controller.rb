@@ -91,6 +91,7 @@ class MembershipsController < ApplicationController
 
   def authenticate
     @project = Project.find(params[:project_id])
+    session[:requested_page] = request.fullpath
     redirect_to projects_path, notice: "You do not have access to that project" unless @project.users.include?(current_user)
   end
 

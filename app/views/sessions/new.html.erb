@@ -3,12 +3,6 @@
    <div class="well">
      <h2>Sign In</h2>
 
-     <% if notice %>
-       <div class="alert alert-danger" role="alert">
-         <%= notice.html_safe %>
-       </div>
-     <% end %>
-
      <%= form_tag signin_path do %>
      <div class="form-group">
        <%= label_tag :email %>

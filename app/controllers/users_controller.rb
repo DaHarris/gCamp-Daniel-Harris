@@ -99,6 +99,7 @@ class UsersController < ApplicationController
 
   def authenticate
     if current_user == nil
+      session[:requested_page] = request.fullpath
       redirect_to signin_path, :notice => 'Must be signed in to access.'
     end
   end
