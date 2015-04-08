@@ -71,6 +71,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+      if !admin
+        @user.update(admin) == false
+      end
       redirect_to users_path, :notice => "User was successfully updated."
     else
       @messages = @user.errors.full_messages
