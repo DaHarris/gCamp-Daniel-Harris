@@ -3,12 +3,16 @@ class ProjectsController < ApplicationController
   before_action :owner, only: [:edit, :update, :destroy]
 
   def index
-    @projects = current_user.projects
+    if admin
+      @projects = Project.all
+    else
+      @projects = current_user.projects
+    end
   end
 
   def show
     @project = Project.find(params[:id])
-    redirect_to projects_path, notice: "You do not have access to that project" unless @project.users.include?(current_user)
+    redirect_to projects_path, notice: "You do not have access to that project" unless @project.users.include?(current_user) || admin
   end
 
   def new
@@ -41,12 +45,12 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
-    redirect_to projects_path, notice: "You do not have access to that project" unless @project.users.include?(current_user)
+    redirect_to projects_path, notice: "You do not have access to that project" unless @project.users.include?(current_user) || admin
   end
 
   def update
     @project = Project.find(params[:id])
-    redirect_to projects_path, notice: "You do not have access to that project" unless @project.users.include?(current_user)
+    redirect_to projects_path, notice: "You do not have access to that project" unless @project.users.include?(current_user) || admin
     if @project.update(project_params)
       redirect_to project_path(@project), :notice => 'Project was successfully updated.'
     else
@@ -70,7 +74,7 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project = Project.find(params[:id])
-    redirect_to projects_path, notice: "You do not have access to that project" unless @project.users.include?(current_user)
+    redirect_to projects_path, notice: "You do not have access to that project" unless @project.users.include?(current_user) || admin
     @project.destroy
     redirect_to projects_path
   end
@@ -86,7 +90,7 @@ class ProjectsController < ApplicationController
 
   def owner
     @project = Project.find(params[:id])
-    if @project.memberships.where(owner: true, user_id: current_user.id) == []
+    if @project.memberships.where(owner: true, user_id: current_user.id) == [] && !admin
       redirect_to @project, notice: "You do not have access"
     end
   end

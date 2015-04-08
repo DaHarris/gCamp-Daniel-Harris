@@ -92,12 +92,12 @@ class MembershipsController < ApplicationController
   def authenticate
     @project = Project.find(params[:project_id])
     session[:requested_page] = request.fullpath
-    redirect_to projects_path, notice: "You do not have access to that project" unless @project.users.include?(current_user)
+    redirect_to projects_path, notice: "You do not have access to that project" unless @project.users.include?(current_user) || admin
   end
 
   def owner
     @project = Project.find(params[:project_id])
-    if @project.memberships.where(owner: true, user_id: current_user.id) == []
+    if @project.memberships.where(owner: true, user_id: current_user.id) == [] && !admin
       redirect_to @project, notice: "You do not have access"
     end
   end
