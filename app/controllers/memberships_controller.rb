@@ -49,10 +49,18 @@ class MembershipsController < ApplicationController
     @membership = Membership.find(params[:id])
     if params[:membership][:owner] == "Owner"
       @membership.update(owner: true)
-      redirect_to project_memberships_path(@project), notice: "Membership was successfully updated."
+      if @membership.valid?
+        redirect_to project_memberships_path(@project), notice: "Membership was successfully updated."
+      else
+        redirect_to project_memberships_path(@project), notice: @membership.errors.full_messages[0]
+      end
     elsif params[:membership][:owner] == "Member"
       @membership.update(owner: false)
-      redirect_to project_memberships_path(@project), notice: "Membership was successfully updated."
+      if @membership.valid?
+        redirect_to project_memberships_path(@project), notice: "Membership was successfully updated."
+      else
+        redirect_to project_memberships_path(@project), notice: @membership.errors.full_messages[0]
+      end
     else
       @messages = @membership.errors.full_messages
       if @messages.length > 1

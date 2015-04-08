@@ -3,7 +3,22 @@ class Membership < ActiveRecord::Base
   belongs_to :project
   validates :user_id, presence: true
   validates :project_id, presence: true
-  validate :check_unique
+  validate :check_unique, on: :create
+  validate :ensure_owner, on: :update
+
+  def ensure_owner
+    if Membership.where(project_id: self.project_id, owner: true).count == 1 && owner == false
+      errors.add(:base, "Projects must have at least one owner")
+    end
+  end
+
+  def last_owner(project, user)
+    if project.memberships.where(owner: true).count == 1 && self.owner == true
+      return true
+    else
+      false
+    end
+  end
 
   private
 

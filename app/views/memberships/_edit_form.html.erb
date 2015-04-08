@@ -1,17 +1,41 @@
-<%= form_for [@project, mem] do |f| %>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name:</th>
+      <th>Role:</th>
+      <th></th>
+    </tr>
+  </thead>
 
-  <%= link_to User.find(mem.user_id).first_name, user_path(User.find(mem.user_id)) %>
+  <tbody>
+    <tr>
+      <% @project.memberships.each do |mem| %>
+        <%= form_for [@project, mem] do |f| %>
 
-  <% if mem.owner == true %>
-    <%= f.collection_select :owner, @roles, :to_s, :to_s, {selected: "Owner"}, {class: "form-control"} %>
-  <% else %>
-    <%= f.collection_select :owner, @roles, :to_s, :to_s, {selected: "Member"}, {class: "form-control"} %>
-  <% end %>
+          <td><%= link_to User.find(mem.user_id).first_name, user_path(User.find(mem.user_id)) %></td>
 
-  <%= f.submit 'Update', class: "btn btn-primary" %>
+          <td>
+            <% if mem.owner == true %>
+              <%= f.collection_select :owner, @roles, :to_s, :to_s, {selected: "Owner"}, {class: "form-control"} %>
+            <% else %>
+              <%= f.collection_select :owner, @roles, :to_s, :to_s, {selected: "Member"}, {class: "form-control"} %>
+            <% end %>
 
-  <%= link_to project_membership_path(@project, mem), confirm: "Are you sure?", method: :delete do %>
-    <span class="glyphicon glyphicon-remove"></span>
-  <% end %>
-  
-<% end %>
+            <%= f.submit 'Update', class: "btn btn-primary" %>
+          </td>
+
+          <td>
+            <% if mem.last_owner(@project, User.find(mem.user_id)) %>
+              You are the last owner
+            <% else %>
+              <%= link_to project_membership_path(@project, mem), confirm: "Are you sure?", method: :delete do %>
+                <span class="glyphicon glyphicon-remove"></span>
+              <% end %>
+            <% end %>
+          </td>
+
+        <% end %>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
