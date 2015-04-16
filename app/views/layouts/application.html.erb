@@ -12,8 +12,32 @@
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/index">gCamp</a>
+          <% if current_user %>
+            <a class="navbar-brand" href="/projects">gCamp</a>
+          <% else %>
+            <a class="navbar-brand" href="/index">gCamp</a>
+          <% end %>
         </div>
+        <% if current_user %>
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Projects<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <% if admin %>
+                  <% @projects = Project.all %>
+                <% else %>
+                  <% @projects = current_user.projects %>
+                <% end %>
+                <% @projects.each do |pro| %>
+                  <li><%= link_to pro.name, project_path(pro) %></li>
+                <% end %>
+                <li class="divider"></li>
+                <li><%= link_to "New Project", new_project_path %></li>
+              </ul>
+            </li>
+            <li><%= link_to "Users", users_path %></li>
+          </ul>
+        <% end %>
         <form class="navbar-form navbar-right">
         <% if current_user %>
           <div class="navbar-brand">
@@ -41,38 +65,54 @@
 
       <%= yield %>
 
-      <footer>
-        <div class="row">
-          <div class= "col-md-6">
-            <%= link_to "About", about_path %>
-            |
-            <%= link_to "Terms", terms_path %>
-            |
-            <%= link_to "FAQ", faq_path %>
-            <% if current_user %>
+      <% if current_user %>
+        <footer>
+          <div class="row">
+            <div class="text-center">
+              <%= link_to 'Home', root_path %>
               |
-              <%= link_to "Users", users_path %>
+              <%= link_to "About", about_path %>
               |
-              <%= link_to "Projects", projects_path %>
-            <% end %>
+              <%= link_to "Terms", terms_path %>
+              |
+              <%= link_to "FAQ", faq_path %>
+            </div>
           </div>
+        </footer>
+      <% else %>
+        <footer>
+          <div class="row">
+            <div class= "col-md-6">
+              <%= link_to "About", about_path %>
+              |
+              <%= link_to "Terms", terms_path %>
+              |
+              <%= link_to "FAQ", faq_path %>
+              <% if current_user %>
+                |
+                <%= link_to "Users", users_path %>
+                |
+                <%= link_to "Projects", projects_path %>
+              <% end %>
+            </div>
 
-          <div class="col-md-6 text-right">
-            <a href="https://www.linkedin.com/in/danielwharrisdenver">
-              <%= image_tag 'linkedin.png', class: "img-footer", alt: "LinkedIn" %>
-            </a>
-            <a href="https://github.com/DaHarris">
-              <%= image_tag 'github.png', class: "img-footer", alt: "Github" %>
-            </a>
-            <a href="https://twitter.com/bobth3bum">
-              <%= image_tag 'twitter.png', class: "img-footer", alt: "Twitter" %>
-            </a>
-            <a href="https://students.gschool.it/students/201">
-              <%= image_tag 'galvanize.png', class: "img-footer", alt: "Galvanize" %>
-            </a>
-           </div>
-          </div>
-      </footer>
+            <div class="col-md-6 text-right">
+              <a href="https://www.linkedin.com/in/danielwharrisdenver">
+                <%= image_tag 'linkedin.png', class: "img-footer", alt: "LinkedIn" %>
+              </a>
+              <a href="https://github.com/DaHarris">
+                <%= image_tag 'github.png', class: "img-footer", alt: "Github" %>
+              </a>
+              <a href="https://twitter.com/bobth3bum">
+                <%= image_tag 'twitter.png', class: "img-footer", alt: "Twitter" %>
+              </a>
+              <a href="https://students.gschool.it/students/201">
+                <%= image_tag 'galvanize.png', class: "img-footer", alt: "Galvanize" %>
+              </a>
+             </div>
+            </div>
+        </footer>
+      <% end %>
   </div>
 
 
