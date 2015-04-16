@@ -8,7 +8,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       if session[:requested_page]
-        redirect_to session[:requested_page], :notice => 'Logged in.'
+        redirect_url = session[:requested_page]
+        session[:requested_page] = nil
+        redirect_to redirect_url, :notice => 'Logged in.'
       else
         redirect_to projects_path, :notice => 'Logged in.'
       end
