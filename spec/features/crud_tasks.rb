@@ -21,7 +21,7 @@ describe 'User can CRUD Events' do
     click_on "Create Project"
     first(:link, "Projects").click
 
-    click_on "yeah"
+    first(:link, "yeah").click
     click_on "0 tasks"
 
     click_on "New Task"

@@ -27,7 +27,7 @@ describe 'User can CRUD Events' do
   end
 
   it 'User can edit projects' do
-    click_on "yeah"
+    first(:link, "yeah").click
     click_on "Edit Project"
     fill_in "Name", with: "yerp"
     click_on "Update Project"
@@ -35,12 +35,12 @@ describe 'User can CRUD Events' do
   end
 
   it 'User can view show page for project' do
-    click_on "yeah"
+    first(:link, "yeah").click
     expect(page).to have_content("Edit Project")
   end
 
   it "User can delete project" do
-    click_on "yeah"
+    first(:link, "yeah").click
     click_on "Delete"
     expect(page).to have_no_content("yeah")
   end
