@@ -40,6 +40,9 @@ end
 
 group :development, :test do
 
+  #factorygirl for testing
+  gem 'factory_girl'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
   gem 'pry-rails'
