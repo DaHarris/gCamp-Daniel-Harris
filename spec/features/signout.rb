@@ -5,10 +5,7 @@ describe 'User can Signin' do
   before :each do
     # visit root
     visit '/'
-    click_on "Users"
-
-    # click on link to go to new location form
-    click_on "New User"
+    click_on "Sign up"
 
     #filling out form for location
     fill_in "First name", with: "Dan"
@@ -19,12 +16,6 @@ describe 'User can Signin' do
 
     click_on "Create User"
 
-    click_on "Sign in"
-
-    fill_in "Email", with: "bobth3bum@gmail.com"
-    fill_in "Password", with: "my_pass"
-
-    click_on "Sign In"
   end
 
   it 'can signout' do

@@ -5,10 +5,7 @@ describe 'User can Signup and Crud User registration' do
   before :each do
     # visit root
     visit '/'
-    click_on "Users"
-
-    # click on link to go to new location form
-    click_on "New User"
+    click_on "Sign up"
 
     #filling out form for location
     fill_in "First name", with: "Dan"
@@ -25,6 +22,8 @@ describe 'User can Signup and Crud User registration' do
   end
 
   it 'Can edit user' do
+
+    click_on "Users"
     click_on "Edit"
 
     fill_in "First name", with: "Daniel"
@@ -37,12 +36,16 @@ describe 'User can Signup and Crud User registration' do
   end
 
   it 'Can view user show page' do
+    click_on "Users"
+
     click_on "Dan"
 
     expect(page).to have_content("First Name")
   end
 
   it 'Can delete user' do
+    click_on "Users"
+
     click_on "Delete"
 
     expect(page).to have_no_content("Dan")

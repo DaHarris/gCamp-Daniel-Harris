@@ -5,10 +5,7 @@ describe 'User can Signin' do
   before :each do
     # visit root
     visit '/'
-    click_on "Users"
-
-    # click on link to go to new location form
-    click_on "New User"
+    click_on "Sign up"
 
     #filling out form for location
     fill_in "First name", with: "Dan"
@@ -21,6 +18,7 @@ describe 'User can Signin' do
   end
 
   it 'can signin' do
+    click_on "Sign out"
     click_on "Sign in"
 
     fill_in "Email", with: "bobth3bum@gmail.com"
@@ -28,10 +26,11 @@ describe 'User can Signin' do
 
     click_on "Sign In"
 
-    expect(page).to have_content('Logged in as: Dan')
+    expect(page).to have_content('Dan')
   end
 
   it 'redirects correctly' do
+    click_on "Sign out"
     click_on "Sign in"
 
     fill_in "Email", with: "bobth3bum@gmail.com"
@@ -39,6 +38,6 @@ describe 'User can Signin' do
 
     click_on "Sign In"
 
-    current_path.should == "/"
+    current_path.should == "/projects"
   end
 end

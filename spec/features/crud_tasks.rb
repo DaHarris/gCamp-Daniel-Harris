@@ -5,10 +5,7 @@ describe 'User can CRUD Events' do
   before :each do
     # visit root
     visit '/'
-    click_on "Users"
-
-    # click on link to go to new location form
-    click_on "New User"
+    click_on "Sign up"
 
     #filling out form for location
     fill_in "First name", with: "Dan"
@@ -18,17 +15,6 @@ describe 'User can CRUD Events' do
     fill_in "Password confirmation", with: "my_pass"
 
     click_on "Create User"
-
-    click_on "Sign in"
-
-    fill_in 'email', with: "bobth3bum@gmail.com"
-    fill_in 'password', with: "my_pass"
-
-    click_on "Sign In"
-
-    click_on "Projects"
-
-    click_on "New Project"
 
     fill_in "Name", with: "yeah"
 
@@ -63,7 +49,7 @@ describe 'User can CRUD Events' do
   end
 
   it 'User can delete tasks' do
-    click_on "Delete"
-    expect(page).to have_no_content("dope")
+    click_on ("delete")
+    expect(page).to have_content("Task was successfully destroyed.")
   end
 end

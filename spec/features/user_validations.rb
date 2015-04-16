@@ -31,6 +31,8 @@ describe 'User can see validations' do
 
     click_on "Create User"
 
+    click_on "Sign out"
+
     click_on "Sign in"
 
     click_on "Sign In"

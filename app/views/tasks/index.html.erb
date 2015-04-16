@@ -31,7 +31,7 @@
         <td><%= task.date %></td>
         <td class="text-right">
           <a class="btn btn-info" <%= link_to 'Edit', edit_project_task_path(@project, task) %>
-          <%= link_to project_task_path(@project, task), method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <%= link_to project_task_path(@project, task), id: "delete", method: :delete, data: { confirm: 'Are you sure?' } do %>
             <i class="glyphicon glyphicon-remove"></i>
           <% end %>
         </td>
