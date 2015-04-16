@@ -18,6 +18,8 @@ namespace :cleanup do
     end
   end
 
+  task :remove_
+
   task :remove_comments_by_tasks => :environment do
     comments = Comment.all
     comments.each do |com|
